@@ -1,0 +1,31 @@
+{
+  "name": "automate-testing-opencart",
+  "version": "1.0.0",
+  "description": "Automation testing for OpenCart Demo Store",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "test:headless": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QAA-team-projects-and-materials/Automate-Testing-OpenCart-Demo-Store"
+  },
+  "keywords": [
+    "cypress",
+    "automation",
+    "testing",
+    "opencart",
+    "demo"
+  ],
+  "author": "Vova",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.0.0",
+    "mocha": "^10.0.0",
+    "chai": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
