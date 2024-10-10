@@ -1,20 +1,25 @@
+import homePageSelectors from '..//..//fixtures/VerifyHomepageLoadsSelectors.json'
 describe('Verify Homepage Loads Successfully', () => {
   
   // Before the test begins, navigate to the homepage
-  before(() => {
-    cy.visit('');
+  beforeEach(() => {
+    cy.visit('')
   })
 
-  it('Should display the store logo', () => {
+  it('Verify that key element is visible at the top of the page', () => {
 
-  // Verify that key elevey is visible at the top of the page
+  // Verify key element in products section
+    cy.get(homePageSelectors.productSection)
+    .should('exist')
+    .and('be.visible')
+
   //Verify logo
     cy.findAllByAltText('Демо магазин OpenCart')
     .should('exist')
     .should('be.visible')
 
   //Verify navigation bar
-    cy.get('.navbar')
+    cy.get(homePageSelectors.navbar)
     .should('exist')
     .and('be.visible')
 
@@ -22,8 +27,32 @@ describe('Verify Homepage Loads Successfully', () => {
     cy.findAllByPlaceholderText('Пошук')
     .should('be.visible')
 
-    // Verify that the featured products section is present
-    cy.get('#content .product-layout')
-    .should('have.length.greaterThan', 0)
+  // Verify that the top slider is visible
+    cy.get(homePageSelectors.topSlider, { timeout: 10000 })
+    .should('exist')
+    .then((el) => {
+    cy.wrap(el).should('be.visible');
+    });
   })
+  
+  it('Verify that the products section key element is present', () =>{
+
+    // Verify that products section title is visible
+    cy.findAllByText('Рекомендовані')
+    .should('exist')
+    .and('be.visible')
+
+    // Verify that products carts is visible
+    cy.get('.product-thumb.transition')
+    .should('exist')
+    
+
+    // Verify that the bottom slider is visible
+    cy.get(homePageSelectors.bottomSlider)
+    .should('exist')
+    .then((el) => {
+    cy.wrap(el).should('be.visible')
+    })
+  })
+  
 })
