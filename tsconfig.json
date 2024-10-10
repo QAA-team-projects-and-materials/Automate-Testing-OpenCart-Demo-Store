@@ -1,11 +1,22 @@
 {
-    "compilerOptions": {
-      "target": "ES6",
-      "lib": ["es6", "dom"],
-      "types": ["node", "mocha", "cypress", "@testing-library/cypress" ],
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true
-    }, 
-      "include": ["support/*.ts",  "./node_modules/cypress",  "cypress/**/*.ts", "./**/*", "../node_modules/@testing-library/cypress"],
-  }
+  "compilerOptions": {
+  "target": "ES6",
+  "lib": ["es6", "dom"],
+  "types": ["node", "mocha", "cypress"],
+  "strict": true,
+  "esModuleInterop": true,
+  "skipLibCheck": true,
+  "resolveJsonModule": true,
+  "module": "commonjs",  // Спробуємо "commonjs"
+  "moduleResolution": "node"
+
+
+  },
+  "include": [
+    "support/*.ts", 
+    "./node_modules/cypress",  
+    "cypress/**/*.ts", 
+    "./**/*", 
+    "../node_modules/@testing-library/cypress"
+  ]
+}

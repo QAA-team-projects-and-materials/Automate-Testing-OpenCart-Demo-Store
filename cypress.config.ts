@@ -1,7 +1,7 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from 'cypress'
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
-    baseUrl: 'https://openweathermap.org'
+    baseUrl: 'https://demo.opencart.ua/',
   },
 })
