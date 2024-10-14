@@ -24,12 +24,10 @@ describe('OpenCart Search Functionality', () => {
         // Alternatively, press Enter to submit the search
         //cy.findAllByRole('button').eq(0).type(`${searchTerm}{enter}`);
 
-        // Wait for the search results to load
+        // Wait for the search results to load and check if any results are found
         cy.get('.product-thumb')
+            .should('exist')
             .should('be.visible')
-
-        // Check if any results are found
-        cy.get('.product-thumb')
             .should('have.length.greaterThan', 0)
 
         // Loop through each product and verify the name matches the search term

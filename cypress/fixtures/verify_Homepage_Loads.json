@@ -4,5 +4,6 @@
   "bottomSlider": ".owl-wrapper",
   "productSection": "#content",
   "productSectionItem": ".product-thumb.transition",
-  "footer": "footer"
+  "footer": "footer",
+  "footerContainer": "footer > .container > .row"
 }

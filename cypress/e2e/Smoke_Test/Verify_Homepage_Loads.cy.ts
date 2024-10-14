@@ -1,4 +1,4 @@
-import homePageSelectors from '../../fixtures/Verify_Homepage_Loads.json'
+import homePageSelectors from '../../fixtures/verify_Homepage_Loads.json'
 describe('Verify Homepage Loads Successfully', () => {
 
     // Before the test begins, navigate to the homepage
@@ -43,17 +43,22 @@ describe('Verify Homepage Loads Successfully', () => {
         cy.get(homePageSelectors.productSectionItem)
             .should('exist')
 
-
         // Verify that the bottom slider is visible
         cy.get(homePageSelectors.bottomSlider, { timeout: 10000 })
             .should('exist')
             .should('be.visible')
+    })
 
-        // Verify that the footer is visible
+    it('Verify that the footer section is visible', () =>{
+
+        //Verify that the footer is visible
         cy.get(homePageSelectors.footer)
             .should('exist')
             .should('be.visible')
 
+        //Verify that the footer container is visible
+        cy.get(homePageSelectors.footerContainer, { timeout: 10000 })
+            .should('exist')
+            .should('be.visible')
     })
-    it('')
 })
