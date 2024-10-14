@@ -1,4 +1,4 @@
-import searchItemSelectors from "../../fixtures/add_Product_To_The_Cart.json"
+import searchItemSelectors from "../../fixtures/addProductToTheCartSelectors.json"
 
 describe('Adding a Product to the Cart', () => {
 
