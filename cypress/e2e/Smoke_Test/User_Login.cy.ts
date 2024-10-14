@@ -1,7 +1,7 @@
 import logInSelectors from '..//..//fixtures/user_Log_In.json'
 describe('User Login', () => {
 
-    beforeEach(() => {
+    before(() => {
         // Navigate to the Open demo store login page
         cy.visit('')
 
@@ -18,15 +18,28 @@ describe('User Login', () => {
     })
 
     it('should log in with valid credentials', () => {
-        // LOG IN
+
         // Loading user data
         const user = Cypress.env("user")
 
         // Enter credentials
-        cy.findAllByPlaceholderText('Enter email').eq(0).type(user.email);
-        cy.findAllByPlaceholderText('Password').type(user.password)
+        cy.findAllByPlaceholderText('E-Mail')
+            .should('exist').should('be.visible')
+            .type(user.email)
 
+        cy.findAllByPlaceholderText('Пароль')
+            .should('exist').should('be.visible')
+            .type(user.password)
 
+        // Submit the login form
+        cy.findByRole('button', { name: /Вхід/i }).click()
 
+        // Verification that user is registered
+        cy.findAllByText('Обліковий запис')
+            .should('exist')
+            .and('be.visible')
+
+        // Asserts that the current URL contains the '/account'
+        cy.url().should('include', '/account')
     })
 })

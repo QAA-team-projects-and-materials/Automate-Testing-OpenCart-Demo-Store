@@ -4,7 +4,7 @@ describe('Adding a Product to the Cart', () => {
 
     let productName = 'iPhone'
 
-    beforeEach(() => {
+    before(() => {
         // Navigate to the homepage
         cy.visit('')
 
@@ -13,7 +13,8 @@ describe('Adding a Product to the Cart', () => {
             .type(productName)
 
         // Click the search button
-        cy.findAllByRole('button').eq(0).click()
+        cy.findAllByRole('button').eq(0)
+            .click()
     })
 
     it('Adds a product to the cart and verifies', () => {
@@ -27,15 +28,14 @@ describe('Adding a Product to the Cart', () => {
             .click().wait(1000)
 
         // Verify the success message
-        cy.get(searchItemSelectors.successAllert).should('contain', `Ви додали ${productName} до Вашого кошика!`)
+        cy.get(searchItemSelectors.successAllert)
+            .should('contain', `Ви додали ${productName} до Вашого кошика!`)
 
+        // Open the cart dropdown and verify the product is displayed
+        cy.findAllByRole('button').eq(1)
+            .click()
 
-        it(' Verify that product is display in cart correctly', () =>{
-
-            // Open the cart dropdown and verify the product is displayed
-            cy.findAllByRole('button').eq(1).click()
-            cy.get(searchItemSelectors.shoppingCartItemText)
-                .should('contain.text', productName)
-        })
-    });
-});
+        cy.get(searchItemSelectors.shoppingCartItemText)
+            .should('contain.text', productName)
+    })
+})

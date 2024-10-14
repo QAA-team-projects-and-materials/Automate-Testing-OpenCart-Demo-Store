@@ -28,7 +28,9 @@ describe('Verify Homepage Loads Successfully', () => {
             .should('be.visible')
 
         // Verify that the top slider is visible
-        cy.get(homePageSelectors.topSlider).should('exist').should('be.visible')
+        cy.get(homePageSelectors.topSlider)
+            .should('exist')
+            .should('be.visible')
 
     })
 

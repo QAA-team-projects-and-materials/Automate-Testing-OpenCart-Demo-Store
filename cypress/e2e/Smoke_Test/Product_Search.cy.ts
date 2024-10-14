@@ -1,7 +1,7 @@
 describe('OpenCart Search Functionality', () => {
     const searchTerm = 'MacBook'
 
-    beforeEach(() => {
+    before(() => {
         // Navigate to the homepage
         cy.visit('')
     })
