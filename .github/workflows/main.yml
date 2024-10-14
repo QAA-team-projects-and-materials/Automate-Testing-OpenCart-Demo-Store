@@ -1,0 +1,38 @@
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - main  # Run tests on push to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Run tests for pull requests targeting the 'main' branch
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Check out your repository's code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Set up Node.js environment
+        with:
+          node-version: '16'  # Specify the Node.js version you want to use
+
+      - name: Install dependencies
+        run: npm install  # Install npm dependencies listed in package.json
+
+      - name: Install Cypress
+        run: npm install cypress --save-dev  # Ensure Cypress is installed
+
+      - name: Run Cypress tests in headless mode
+        run: npx cypress run  # Runs Cypress tests in headless mode
+
+      - name: Upload Cypress test results
+        if: failure()  # Only upload test results if the tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-results
+          path: cypress/screenshots  # You can upload the screenshots of failed tests
