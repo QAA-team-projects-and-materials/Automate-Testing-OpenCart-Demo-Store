@@ -1,36 +1,41 @@
 describe('OpenCart Search Functionality', () => {
-    it('Test Product Search Functionality', () => {
-      // Navigate to the homepage
-        cy.visit('')
-  
-      // Define the search term
-         const searchTerm = 'MacBook'
-  
-      // Locate the search bar and type the search term
-        cy.findAllByPlaceholderText('Пошук').type(searchTerm)
-  
-      // Click the search button
-         cy.findAllByRole('button').eq(0)
-        .should('exist')
-        .should('be.visible')
-        .click()
+    const searchTerm = 'MacBook'
 
-      // Redirecting to the product page
+    beforeEach(() => {
+        // Navigate to the homepage
+        cy.visit('')
+    })
+
+    it('Test Product Search Functionality', () => {
+
+        // Locate the search bar and type the search term
+        cy.findAllByPlaceholderText('Пошук')
+            .type(searchTerm)
+
+        // Click the search button
+        cy.findAllByRole('button').eq(0)
+            .should('exist')
+            .should('be.visible')
+            .click()
+
+        // Redirecting to the product page
         cy.url().should('include', 'product/')
 
-      // Alternatively, press Enter to submit the search
-      //cy.findAllByRole('button').eq(0).type(`${searchTerm}{enter}`);
-  
-      // Wait for the search results to load
-        cy.get('.product-thumb').should('be.visible')
-  
-      // Check if any results are found
-        cy.get('.product-thumb').should('have.length.greaterThan', 0)
-  
-    // Loop through each product and verify the name matches the search term
+        // Alternatively, press Enter to submit the search
+        //cy.findAllByRole('button').eq(0).type(`${searchTerm}{enter}`);
+
+        // Wait for the search results to load
+        cy.get('.product-thumb')
+            .should('be.visible')
+
+        // Check if any results are found
+        cy.get('.product-thumb')
+            .should('have.length.greaterThan', 0)
+
+        // Loop through each product and verify the name matches the search term
         cy.get('.product-thumb').each((el) => {
-        const productName = el.find('.caption a').text()
-        expect(productName.toLowerCase()).to.include(searchTerm.toLowerCase())
-        });
-    });
-  });
+            const productName = el.find('.caption a').text()
+            expect(productName.toLowerCase()).to.include(searchTerm.toLowerCase())
+        })
+    })
+})

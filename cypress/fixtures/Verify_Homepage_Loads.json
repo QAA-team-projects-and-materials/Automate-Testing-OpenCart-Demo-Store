@@ -1,0 +1,8 @@
+{
+  "navbar": ".navbar",
+  "topSlider": ".owl-wrapper-outer",
+  "bottomSlider": ".owl-wrapper",
+  "productSection": "#content",
+  "productSectionItem": ".product-thumb.transition",
+  "footer": "footer"
+}

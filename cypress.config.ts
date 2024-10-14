@@ -1,7 +1,10 @@
-import { defineConfig } from 'cypress'
+const { defineConfig } = require("cypress");
 
-export default defineConfig({
+module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://demo.opencart.ua/',
+    setupNodeEvents() {
+      // implement node event listeners here
+    },
   },
-})
+});
