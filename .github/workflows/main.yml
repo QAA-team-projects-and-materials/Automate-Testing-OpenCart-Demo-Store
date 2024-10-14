@@ -27,8 +27,8 @@ jobs:
       - name: Install Cypress
         run: npm install cypress --save-dev  # Ensure Cypress is installed
 
-      - name: Run Cypress tests
-        run: npm run test  # Run the test command (this assumes `test` script runs Cypress tests in package.json)
+      - name: Run Cypress tests in headless mode
+        run: npx cypress run  # Runs Cypress tests in headless mode
 
       - name: Upload Cypress test results
         if: failure()  # Only upload test results if the tests fail
