@@ -27,6 +27,11 @@ jobs:
       - name: Install Cypress
         run: npm install cypress --save-dev  # Ensure Cypress is installed
 
+      - name: Create cypress.env.json
+        run: echo $CYPRESS_VARS >> cypress.env.json  # Generates the cypress.env.json file
+        env:
+          CYPRESS_VARS: ${{ secrets.CYPRESS_VARS }}  # Load secrets from GitHub
+
       - name: Run Cypress tests in headless mode
         run: npx cypress run  # Runs Cypress tests in headless mode
 
