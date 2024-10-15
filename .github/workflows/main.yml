@@ -1,13 +1,12 @@
 name: Run Cypress Tests
 
 on:
-  push:
+  push:  # Запускати тести на будь-якій гілці при пуші
     branches:
-      - main  # Run tests on push to the 'main' branch
-  pull_request:
+      - '**'  # Використовується шаблон для всіх гілок
+  pull_request:  # Запускати тести на будь-якій гілці при створенні pull request
     branches:
-      - main  # Run tests for pull requests targeting the 'main' branch
-
+      - '**'
 jobs:
   cypress-run:
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
