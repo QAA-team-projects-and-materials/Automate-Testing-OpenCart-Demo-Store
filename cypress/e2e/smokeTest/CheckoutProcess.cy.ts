@@ -114,7 +114,7 @@ describe('Adding a Product to the Cart', () => {
             .wait(1000)
 
         // Next step button
-        cy.findByRole("button", { name: /Продовжити/i }).wait(1000).click()
+            cy.findByRole("button", { name: /Продовжити/i }).wait(1000).click()
         cy.get('input[name="agree"]').should('be.visible').click()
         //  cy.findByRole('checkbox', { name: /agree/i }).click();
         cy.findByRole("button", { name: /Продовжити/i }).wait(1000).click()
@@ -125,7 +125,7 @@ describe('Adding a Product to the Cart', () => {
             .should('be.visible')
             .wait(1000)
 
-        // Comperison search item and in order table
+        // Comparison search item and in order table
         cy.get('.table-responsive')
             .should('exist')
             .should('be.visible')
