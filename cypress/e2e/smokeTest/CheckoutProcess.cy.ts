@@ -1,5 +1,6 @@
 import searchItemSelectors from "../../fixtures/addProductToTheCartSelectors.json"
 import logInSelectors from "../../fixtures/userLogInSelectors.json"
+import checkoutSelectors from "..//../fixtures/checkoutProcessSelectors.json"
 
 describe('Adding a Product to the Cart', () => {
 
@@ -87,8 +88,8 @@ describe('Adding a Product to the Cart', () => {
             .should('exist')
             .should('be.visible')
         // Next step button
-        cy.findByRole("button", { name: /Продовжити/i }).as('nextStepButton');
-        cy.get('@nextStepButton').click();
+        cy.findByRole("button", { name: /Продовжити/i }).as('nextStepButton')
+        cy.get('@nextStepButton').click()
 
         // Step 3 "Деталі доставки"
         cy.findAllByText('Крок 3: Деталі доставки')
@@ -96,46 +97,41 @@ describe('Adding a Product to the Cart', () => {
             .should('be.visible')
 
         // Next step button
-        cy.findByRole("button", { name: /Продовжити/i }).click()
+        cy.get('@nextStepButton').click()
 
         // Step 4 "Спосіб доставки"
         cy.findAllByText('Крок 4: Спосіб доставки')
             .should('exist')
             .should('be.visible')
-            .wait(1000)
 
         // Next step button
-        cy.findByRole("button", { name: /Продовжити/i }).click()
+        cy.get('@nextStepButton').click()
 
         // Step 5 "Спосіб оплати"
         cy.findAllByText('Крок 5: Спосіб оплати')
             .should('exist')
             .should('be.visible')
-            .wait(1000)
 
         // Next step button
-            cy.findByRole("button", { name: /Продовжити/i }).wait(1000).click()
-        cy.get('input[name="agree"]').should('be.visible').click()
-        //  cy.findByRole('checkbox', { name: /agree/i }).click();
-        cy.findByRole("button", { name: /Продовжити/i }).wait(1000).click()
+        cy.get(checkoutSelectors.orderCheckBox).should('be.visible').click()
+        cy.get('@nextStepButton').click()
 
         // Step 6 "Підтвердження замовлення"
         cy.findAllByText('Крок 6: Підтвердження замовлення')
             .should('exist')
             .should('be.visible')
-            .wait(1000)
 
-        // Comparison search item and in order table
-        cy.get('.table-responsive')
+        // Comparison search item and item in order table
+        cy.get(checkoutSelectors.orderTable)
             .should('exist')
             .should('be.visible')
             .each((el) => {
-            const searchTerm = el.find('.table-responsive > .table > tbody > tr > :nth-child(1)').text()
+            const searchTerm = el.find(checkoutSelectors.tableSearchTerm).text()
             expect(productName.toLowerCase()).to.include(searchTerm.toLowerCase())
         })
 
         // Confirm order button
-        cy.findByRole("button", { name: /Підтвердити замовлення/i }).wait(1000).click()
+        cy.findByRole("button", { name: /Підтвердити замовлення/i }).click()
 
         // Asserts that the current URL contains the 'checkout/success'
         cy.url().should('include', 'checkout/success')

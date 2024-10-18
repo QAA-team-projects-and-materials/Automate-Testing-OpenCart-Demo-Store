@@ -1,0 +1,5 @@
+{
+  "orderTable": ".table-responsive",
+  "tableSearchTerm": ".table-responsive > .table > tbody > tr > :nth-child(1)",
+  "orderCheckBox": "input[name=\"agree\"]"
+}
