@@ -113,6 +113,7 @@ describe('Adding a Product to the Cart', () => {
             .should('be.visible')
 
         // Next step button
+        cy.get('@nextStepButton').click()
         cy.get(checkoutSelectors.orderCheckBox).should('be.visible').click()
         cy.get('@nextStepButton').click()
 
