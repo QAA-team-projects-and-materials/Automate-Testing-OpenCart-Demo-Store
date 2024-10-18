@@ -114,7 +114,7 @@ describe('Adding a Product to the Cart', () => {
 
         // Next step button
         cy.get('@nextStepButton').click()
-        cy.get(checkoutSelectors.orderCheckBox).should('be.visible').click()
+        cy.get('input[name="agree"]').should('be.visible').click()
         cy.get('@nextStepButton').click()
 
         // Step 6 "Підтвердження замовлення"
