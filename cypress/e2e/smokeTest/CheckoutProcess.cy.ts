@@ -35,7 +35,7 @@ describe('Adding a Product to the Cart', () => {
 
         // Submit the login form
         cy.findByRole("button", {name: /Вхід/i}).click()
-        
+
         // Search for the product
         cy.findAllByPlaceholderText('Пошук')
             .type(productName)
@@ -43,7 +43,7 @@ describe('Adding a Product to the Cart', () => {
         // Click the search button
         cy.findAllByRole('button').eq(0)
             .click()
-        
+
         // Open the product details page
         cy.get(searchItemSelectors.productItem)
             .first().click()
@@ -78,48 +78,32 @@ describe('Adding a Product to the Cart', () => {
     })
     it('Steps for ordering using registration (default) data', () => {
 
-        // Step 1 "Варіанти оформлення"
-        cy.findAllByText('Крок 1: Варіанти оформлення')
-            .should('exist')
-            .should('be.visible')
+        // Step 1
+        cy.findByText('Крок 1: Варіанти оформлення').should('be.visible');
+        cy.findByRole('button', { name: /Продовжити/i }).click();
 
-        // Step 2 "Деталі рахунку"
-        cy.findAllByText('Крок 2: Деталі рахунку')
-            .should('exist')
-            .should('be.visible')
-        // Next step button
-        cy.findByRole("button", { name: /Продовжити/i }).as('nextStepButton')
-        cy.get('@nextStepButton').click()
+        // Step 2
+        cy.findByText('Крок 2: Деталі рахунку').should('be.visible');
+        cy.findByRole('button', { name: /Продовжити/i }).click();
 
-        // Step 3 "Деталі доставки"
-        cy.findAllByText('Крок 3: Деталі доставки')
-            .should('exist')
-            .should('be.visible')
+        // Step 3
+        cy.findByText('Крок 3: Деталі доставки').should('be.visible');
+        cy.findByRole('button', { name: /Продовжити/i }).click();
 
-        // Next step button
-        cy.get('@nextStepButton').click()
+        // Step 4
+        cy.findByText('Крок 4: Спосіб доставки').should('be.visible');
+        cy.findByRole('button', { name: /Продовжити/i }).click();
 
-        // Step 4 "Спосіб доставки"
-        cy.findAllByText('Крок 4: Спосіб доставки')
-            .should('exist')
-            .should('be.visible')
+        // Step 5 - Click on checkbox
+        cy.findByText('Крок 5: Спосіб оплати').should('be.visible');
+        cy.findByRole('checkbox').check(); // Use the role of the checkbox
+        cy.findByRole('button', { name: /Продовжити/i }).click();
 
-        // Next step button
-        cy.get('@nextStepButton').click()
+        cy.findByText('Крок 6: Підтвердження замовлення').should('be.visible');
+        cy.findByRole('button', { name: /Продовжити/i }).click();
+        // Verify that the order was successfully completed
 
-        // Step 5 "Спосіб оплати"
-        cy.findAllByText('Крок 5: Спосіб оплати')
-            .should('exist')
-            .should('be.visible')
 
-        // Next step button
-        cy.get('input[name="agree"]').should('be.visible').click()
-        cy.get('@nextStepButton').click()
-
-        // Step 6 "Підтвердження замовлення"
-        cy.findAllByText('Крок 6: Підтвердження замовлення')
-            .should('exist')
-            .should('be.visible')
 
         // Comparison search item and item in order table
         cy.get(checkoutSelectors.orderTable)
