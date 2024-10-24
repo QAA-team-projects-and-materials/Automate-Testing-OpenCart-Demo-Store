@@ -2,7 +2,7 @@ import searchItemSelectors from "../../fixtures/addProductToTheCartSelectors.jso
 
 describe('Adding a Product to the Cart', () => {
 
-    let productName = 'iPhone'
+    const productName = 'iPhone'
 
     before(() => {
         // Navigate to the homepage
