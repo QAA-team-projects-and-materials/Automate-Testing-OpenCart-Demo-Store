@@ -1,45 +1,54 @@
-//import homePageSelectors from "../../fixtures/verifyHomepageLoadsSelectors.json";
+import headerTopIconSelectors from "../../fixtures/headerTopSelectors.json";
 
-describe('Verify Header top icons', () => {
+describe('Verify Header Top section', () => {
 
     // Before the test begins, navigate to the homepage
     beforeEach(() => {
         cy.visit('')
     })
 
-    it('Verify Header Top Icons', () => {
-
+    it('Verify Header Top section', () => {
         // Verify Header Top section
         cy.get('#top')
             .should('exist')
             .and('be.visible')
+    })
 
+    it('Verify phone icon', () => {
         //Verify phone icon
-        cy.get(':nth-child(1) > a > .fa')
+        cy.get(headerTopIconSelectors.phoneIcon)
             .should('exist')
             .should('be.visible')
             .and('not.be.disabled')
+    })
 
+    it('Verify account icon', () => {
         //Verify account icon
-        cy.get('.list-inline > .dropdown > .dropdown-toggle')
+        cy.get(headerTopIconSelectors.accountIcon)
             .should('exist')
             .should('be.visible')
             .and('not.be.disabled')
+    })
 
+    it('Verify like icon', () => {
         // Verify like icon
-        cy.get('.list-inline > :nth-child(3)')
+        cy.get(headerTopIconSelectors.likeIcon)
             .should('exist')
             .should('be.visible')
             .and('not.be.disabled')
+    })
 
+    it('Verify basket icon', () => {
         // Verify basket icon
-        cy.get('.list-inline > :nth-child(4) > a')
+        cy.get(headerTopIconSelectors.basketIcon)
             .should('exist')
             .should('be.visible')
             .and('not.be.disabled')
+    })
 
+    it('Verify checkout icon', () => {
         // Verify checkout icon
-        cy.get('.list-inline > :nth-child(4) > a')
+        cy.get(headerTopIconSelectors.checkoutIcon)
             .should('exist')
             .should('be.visible')
             .and('not.be.disabled')
