@@ -1,6 +1,6 @@
-import headerTopIconSelectors from "../../fixtures/headerTopSelectors.json";
+import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json";
 
-describe('https://demo.opencart.ua/', () => {
+describe('Verify top header links', () => {
 
     // Before the test begins, navigate to the homepage
     beforeEach(() => {
@@ -127,25 +127,26 @@ describe('https://demo.opencart.ua/', () => {
         cy.url().should('include', 'checkout/cart')
     })
 
-    it('Verify checkout link', () => {
-        // Verify checkout icon
-        cy.get(headerTopIconSelectors.checkoutIcon)
-            .should('exist')
-            .should('be.visible')
-            .and('not.be.disabled')
-            .click()
+    it('Verify checkout link',
+        () => {
+            // Verify checkout icon
+            cy.get(headerTopIconSelectors.checkoutIcon)
+                .should('exist')
+                .should('be.visible')
+                .and('not.be.disabled')
+                .click()
 
-        //Verify breadcrumb menu
-        cy.get(headerTopIconSelectors.breadcrumbMenu)
-            .should('exist')
-            .should('be.visible')
+            //Verify breadcrumb menu
+            cy.get(headerTopIconSelectors.breadcrumbMenu)
+                .should('exist')
+                .should('be.visible')
 
-        //Verify h1
-        cy.findAllByText('Кошик')
-            .should('exist')
-            .should('be.visible')
+            //Verify h1
+            cy.findAllByText('Кошик')
+                .should('exist')
+                .should('be.visible')
 
-        // Asserts that the current URL contains the 'checkout/cart'
-        cy.url().should('include', 'checkout/cart')
-    })
+            // Asserts that the current URL contains the 'checkout/cart'
+            cy.url().should('include', 'checkout/cart')
+        })
 })

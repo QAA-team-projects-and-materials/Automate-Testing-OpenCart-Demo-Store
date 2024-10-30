@@ -1,4 +1,4 @@
-import headerTopIconSelectors from "../../fixtures/headerTopSelectors.json";
+import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json";
 
 describe('Verify Header Top section', () => {
 

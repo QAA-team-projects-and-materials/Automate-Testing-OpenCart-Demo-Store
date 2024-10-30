@@ -1,5 +1,6 @@
 {
   "phoneIcon": ":nth-child(1) > a > .fa",
+  "phoneIconTop": ".list-inline > :nth-child(1) > a > .fa",
   "accountIcon": ".list-inline > .dropdown > .dropdown-toggle",
   "likeIcon": ".list-inline > :nth-child(3)",
   "basketIcon": ".list-inline > :nth-child(4)",
