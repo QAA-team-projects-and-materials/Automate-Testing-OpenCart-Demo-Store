@@ -208,8 +208,7 @@ describe('User Login', () => {
         cy.url().should('include', 'checkout/cart')
     })
 
-    it('Verify checkout link',
-      () => {
+    it('Verify checkout link', () => {
           // Verify checkout icon
           cy.get(headerTopIconSelectors.checkoutIcon)
               .should('exist')
@@ -221,8 +220,8 @@ describe('User Login', () => {
           cy.get(headerTopIconSelectors.breadcrumbMenu)
               .should('exist')
               .should('be.visible')
-          
-          // Asserts that the current URL contains the 'checkout/cart'
-          cy.url().should('include', 'checkout/cart')
+
+          // Asserts that the current URL contains the '/checkout'
+          cy.url().should('include', '/checkout')
       })
 })
