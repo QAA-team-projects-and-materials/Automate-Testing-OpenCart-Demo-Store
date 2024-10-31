@@ -31,10 +31,9 @@ describe('User Login', () => {
 
         // Submit the login form
         cy.findByRole("button", {name: /Вхід/i}).click()
-
     })
 
-    it('Verify phone links', () => {
+    it('Verify Phone links', () => {
         //Verify phone icon
         cy.get(headerTopIconSelectors.phoneIconTop)
             .should('exist')
@@ -51,7 +50,7 @@ describe('User Login', () => {
             .should('be.visible')
     })
 
-       it('Verify account link and button "Обліковий запис"', () => {
+    it('Verify Account link and button "Обліковий запис"', () => {
         //Verify account icon
         cy.get(headerTopIconSelectors.accountIcon)
             .should('exist')
@@ -74,7 +73,7 @@ describe('User Login', () => {
         cy.url().should('include', '/account')
     })
 
-    it('Verify account link and button "Історія замовлень"', () => {
+    it('Verify Account link and button "Історія замовлень"', () => {
         //Verify account icon
         cy.get(headerTopIconSelectors.accountIcon)
             .should('exist')
@@ -99,7 +98,7 @@ describe('User Login', () => {
         cy.url().should('include', '/order')
     })
 
-    it('Verify account link and button "Оплата"', () => {
+    it('Verify Account link and button "Оплата"', () => {
         //Verify account icon
         cy.get(headerTopIconSelectors.accountIcon)
             .should('exist')
@@ -124,7 +123,7 @@ describe('User Login', () => {
         cy.url().should('include', '/transaction')
     })
 
-    it('Verify account link and button "Завантаження"', () => {
+    it('Verify Account link and button "Завантаження"', () => {
         //Verify account icon
         cy.get(headerTopIconSelectors.accountIcon)
             .should('exist')
@@ -149,7 +148,7 @@ describe('User Login', () => {
         cy.url().should('include', '/download')
     })
 
-    it('Verify account link and button "Вихід"', () => {
+    it('Verify Account link and button "Вихід"', () => {
         //Verify account icon
         cy.get(headerTopIconSelectors.accountIcon)
             .should('exist')
@@ -172,11 +171,21 @@ describe('User Login', () => {
 
         // Asserts that the current URL contains the '/logout'
         cy.url().should('include', '/logout')
+
+        // Log out button verifying and click
+        cy.findAllByText('Продовжити')
+            .should('exist')
+            .should('be.visible')
+            .should('not.be.disabled')
+            .click()
+
+        // Asserts that the current URL contains the '/home'
+        cy.url().should('include', '/home')
     })
 
-    it('Verify like link', () => {
+    it('Verify Wishlist link', () => {
          // Verify like icon
-         cy.get(headerTopIconSelectors.likeIcon)
+         cy.get(headerTopIconSelectors.wishlistIcon)
              .should('exist')
              .should('be.visible')
              .and('not.be.disabled')
@@ -191,7 +200,7 @@ describe('User Login', () => {
          cy.url().should('include', '/wishlist')
      })
 
-    it('Verify basket icon link', () => {
+    it('Verify Basket icon link', () => {
         // Verify basket icon
         cy.get(headerTopIconSelectors.basketIcon)
             .should('exist')
@@ -208,7 +217,7 @@ describe('User Login', () => {
         cy.url().should('include', 'checkout/cart')
     })
 
-    it('Verify checkout link', () => {
+    it('Verify Checkout link', () => {
           // Verify checkout icon
           cy.get(headerTopIconSelectors.checkoutIcon)
               .should('exist')

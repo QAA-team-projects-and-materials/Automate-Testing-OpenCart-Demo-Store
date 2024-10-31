@@ -30,9 +30,9 @@ describe('Verify Header Top section', () => {
             .and('not.be.disabled')
     })
 
-    it('Verify like icon', () => {
-        // Verify like icon
-        cy.get(headerTopIconSelectors.likeIcon)
+    it('Verify Wishlist  icon', () => {
+        // Verify Wishlist  icon
+        cy.get(headerTopIconSelectors.wishlistIcon)
             .should('exist')
             .should('be.visible')
             .and('not.be.disabled')

@@ -83,8 +83,8 @@ describe('Verify top header links', () => {
         // Asserts that the current URL contains the '/login'
         cy.url().should('include', '/login')
     })
-    it('Verify like link', () => {
-        // Verify like icon
+    it('Verify Wishlist  link', () => {
+        // Verify Wishlist  icon
         cy.get(headerTopIconSelectors.likeIcon)
             .should('exist')
             .should('be.visible')
