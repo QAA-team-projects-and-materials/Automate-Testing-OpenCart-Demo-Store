@@ -10,7 +10,7 @@ const testCases = [
     { name: 'Account - Завантаження', selector: headerTopIconSelectors.accountIcon, url: '/download', buttonText: 'Завантаження' },
     { name: 'Account - Вихід', selector: headerTopIconSelectors.accountIcon, url: '/logout', buttonText: 'Вихід' },
     { name: 'Wishlist link', selector: headerTopIconSelectors.wishlistIcon, url: '/wishlist' },
-    { name: 'Basket icon', selector: headerTopIconSelectors.basketIcon, url: 'checkout/cart' },
+    { name: 'Basket icon', selector: headerTopIconSelectors.basketIcon, url: '/cart' },
     { name: 'Checkout link', selector: headerTopIconSelectors.checkoutIcon, url: '/cart' }
 ];
 
