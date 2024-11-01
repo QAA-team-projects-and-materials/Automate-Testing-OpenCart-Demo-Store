@@ -1,4 +1,4 @@
-import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json";
+import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json"
 
 // Array containing each icon's description and selector
 const icons = [
@@ -13,15 +13,15 @@ describe('Verify Header Top section', () => {
 
     // Before each test, navigate to the homepage
     beforeEach(() => {
-        cy.visit('');
-    });
+        cy.visit('')
+    })
 
     it('Verify Header Top section is visible', () => {
         // Check that the Header Top section exists and is visible
         cy.get('#top')
             .should('exist')
-            .and('be.visible');
-    });
+            .and('be.visible')
+    })
 
     // Parameterized test for each icon in the Header Top section
     icons.forEach(({ name, selector }) => {
@@ -30,7 +30,7 @@ describe('Verify Header Top section', () => {
             cy.get(selector)
                 .should('exist')
                 .should('be.visible')
-                .and('not.be.disabled');
-        });
-    });
-});
+                .and('not.be.disabled')
+        })
+    })
+})

@@ -1,4 +1,4 @@
-import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json";
+import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json"
 
 // Array of test cases for top header links
 const testCases = [
@@ -14,15 +14,15 @@ describe('Verify top header links', () => {
 
     // Before each test, navigate to the homepage
     beforeEach(() => {
-        cy.visit('');
-    });
+        cy.visit('')
+    })
 
     it('Verify Header Top section', () => {
         // Check if the Header Top section is visible
         cy.get('#top')
             .should('exist')
-            .and('be.visible');
-    });
+            .and('be.visible')
+    })
 
     // Parameterized test for each link in the header
     testCases.forEach(({ name, selector, url, buttonText, breadcrumb }) => {
@@ -32,7 +32,7 @@ describe('Verify top header links', () => {
                 .should('exist')
                 .should('be.visible')
                 .and('not.be.disabled')
-                .click();
+                .click()
 
             // If a `buttonText` is provided, click on that specific button in the dropdown
             if (buttonText) {
@@ -41,23 +41,23 @@ describe('Verify top header links', () => {
                     .should('exist')
                     .should('be.visible')
                     .and('not.be.disabled')
-                    .click();
+                    .click()
             }
 
             // Verify breadcrumb menu is present and visible
             cy.get(headerTopIconSelectors.breadcrumbMenu)
                 .should('exist')
-                .should('be.visible');
+                .should('be.visible')
 
             // If a `breadcrumb` is specified, check that the breadcrumb text is visible
             if (breadcrumb) {
                 cy.findAllByText(breadcrumb)
                     .should('exist')
-                    .should('be.visible');
+                    .should('be.visible')
             }
 
             // Assert that the URL includes the expected path
-            cy.url().should('include', url);
-        });
-    });
-});
+            cy.url().should('include', url)
+        })
+    })
+})
