@@ -32,12 +32,12 @@ jobs:
         env:
           CYPRESS_VARS: ${{ secrets.CYPRESS_VARS }}  # Load secrets from GitHub
 
-      - name: Run Cypress tests in headless mode with retries
-        run: npx cypress run --retries 10  # Runs Cypress tests with up to 10 retries for failed tests
+      - name: Run Cypress tests in headless mode
+        run: npx cypress run  # Runs Cypress tests in headless mode
 
       - name: Upload Cypress test results
         if: failure()  # Only upload test results if the tests fail
         uses: actions/upload-artifact@v3
         with:
           name: cypress-results
-          path: cypress/screenshots  # Upload screenshots of failed tests
+          path: cypress/screenshots  # You can upload the screenshots of failed tests
