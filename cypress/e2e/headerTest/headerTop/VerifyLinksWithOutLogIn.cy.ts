@@ -1,152 +1,63 @@
 import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json";
 
+// Array of test cases for top header links
+const testCases = [
+    { name: 'Phone link', selector: headerTopIconSelectors.phoneIcon, url: '/contact', breadcrumb: 'Контакти' },
+    { name: 'Account - Реєстрація', selector: headerTopIconSelectors.accountIcon, url: '/register', buttonText: 'Реєстрація' },
+    { name: 'Account - Вхід', selector: headerTopIconSelectors.accountIcon, url: '/login', buttonText: 'Вхід' },
+    { name: 'Wishlist link', selector: headerTopIconSelectors.wishlistIcon, url: '/login', breadcrumb: 'Обліковий запис' },
+    { name: 'Basket icon', selector: headerTopIconSelectors.basketIcon, url: 'checkout/cart', breadcrumb: 'Кошик' },
+    { name: 'Checkout link', selector: headerTopIconSelectors.checkoutIcon, url: 'checkout/cart', breadcrumb: 'Кошик' }
+];
+
 describe('Verify top header links', () => {
 
-    // Before the test begins, navigate to the homepage
+    // Before each test, navigate to the homepage
     beforeEach(() => {
-        cy.visit('')
-    })
+        cy.visit('');
+    });
 
     it('Verify Header Top section', () => {
-        // Verify Header Top section
+        // Check if the Header Top section is visible
         cy.get('#top')
             .should('exist')
-            .and('be.visible')
-    })
+            .and('be.visible');
+    });
 
-    it('Verify phone links', () => {
-        //Verify phone icon
-        cy.get(headerTopIconSelectors.phoneIcon)
-            .should('exist')
-            .should('be.visible')
-            .and('not.be.disabled')
-            .click()
-
-        // Asserts that the current URL contains the '/contact'
-        cy.url().should('include', '/contact')
-
-        //Verify breadcrumb menu
-        cy.get(headerTopIconSelectors.breadcrumbMenu)
-            .should('exist')
-            .should('be.visible')
-
-        //Verify h1
-        cy.findAllByText('Контакти')
-            .should('exist')
-            .should('be.visible')
-    })
-
-    it('Verify account link and button "Реєстрація"', () => {
-        //Verify account icon
-        cy.get(headerTopIconSelectors.accountIcon)
-            .should('exist')
-            .should('be.visible')
-            .should('not.be.disabled')
-            .click()
-
-        cy.get(headerTopIconSelectors.accountDropdown)
-            cy.findByText('Реєстрація')
-                .should('exist')
-                .should('be.visible')
-                .should('not.be.disabled')
-                .click()
-
-        //Verify breadcrumb menu
-        cy.get(headerTopIconSelectors.breadcrumbMenu)
-            .should('exist')
-            .should('be.visible')
-
-        // Asserts that the current URL contains the '/register'
-        cy.url().should('include', '/register')
-    })
-    it('Verify account link and button "Вхід"', () => {
-        //Verify account icon
-        cy.get(headerTopIconSelectors.accountIcon)
-            .should('exist')
-            .should('be.visible')
-            .should('not.be.disabled')
-            .click()
-
-        //Verify that account dropdown is visible and clickable
-        cy.get(headerTopIconSelectors.accountDropdown)
-        cy.findByText('Вхід')
-            .should('exist')
-            .should('be.visible')
-            .should('not.be.disabled')
-            .click()
-
-        //Verify breadcrumb menu
-        cy.get(headerTopIconSelectors.breadcrumbMenu)
-            .should('exist')
-            .should('be.visible')
-
-        // Asserts that the current URL contains the '/login'
-        cy.url().should('include', '/login')
-    })
-    it('Verify Wishlist  link', () => {
-        // Verify Wishlist  icon
-        cy.get(headerTopIconSelectors.likeIcon)
-            .should('exist')
-            .should('be.visible')
-            .and('not.be.disabled')
-            .click()
-
-        //Verify breadcrumb menu
-        cy.get(headerTopIconSelectors.breadcrumbMenu)
-            .should('exist')
-            .should('be.visible')
-
-        cy.findAllByText('Обліковий запис')
-            .should('exist')
-            .should('be.visible')
-            .and('not.be.disabled')
-
-        // Asserts that the current URL contains the '/login'
-        cy.url().should('include', '/login')
-    })
-
-    it('Verify basket icon', () => {
-        // Verify basket icon
-        cy.get(headerTopIconSelectors.basketIcon)
-            .should('exist')
-            .should('be.visible')
-            .and('not.be.disabled')
-            .click()
-
-        //Verify breadcrumb menu
-        cy.get(headerTopIconSelectors.breadcrumbMenu)
-            .should('exist')
-            .should('be.visible')
-
-        //Verify h1
-        cy.findAllByText('Кошик')
-            .should('exist')
-            .should('be.visible')
-
-        // Asserts that the current URL contains the 'checkout/cart'
-        cy.url().should('include', 'checkout/cart')
-    })
-
-    it('Verify checkout link',
-        () => {
-            // Verify checkout icon
-            cy.get(headerTopIconSelectors.checkoutIcon)
+    // Parameterized test for each link in the header
+    testCases.forEach(({ name, selector, url, buttonText, breadcrumb }) => {
+        it(`Verify ${name}`, () => {
+            // Verify that the icon/button exists, is visible, and not disabled
+            cy.get(selector)
                 .should('exist')
                 .should('be.visible')
                 .and('not.be.disabled')
-                .click()
+                .click();
 
-            //Verify breadcrumb menu
+            // If a `buttonText` is provided, click on that specific button in the dropdown
+            if (buttonText) {
+                cy.get(headerTopIconSelectors.accountDropdown);
+                cy.findByText(buttonText)
+                    .should('exist')
+                    .should('be.visible')
+                    .and('not.be.disabled')
+                    .click();
+            }
+
+            // Verify breadcrumb menu is present and visible
             cy.get(headerTopIconSelectors.breadcrumbMenu)
                 .should('exist')
-                .should('be.visible')
+                .should('be.visible');
 
-            //Verify h1
-            cy.findAllByText('Кошик')
-                .should('exist')
-                .should('be.visible')
+            // If a `breadcrumb` is specified, check that the breadcrumb text is visible
+            if (breadcrumb) {
+                cy.findAllByText(breadcrumb)
+                    .should('exist')
+                    .should('be.visible');
+            }
 
-            // Asserts that the current URL contains the 'checkout/cart'
-            cy.url().should('include', 'checkout/cart')
-        })
-})
+            // Assert that the URL includes the expected path
+            cy.url().should('include', url);
+        });
+    });
+});
