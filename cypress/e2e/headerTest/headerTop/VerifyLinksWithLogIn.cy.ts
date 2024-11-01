@@ -11,7 +11,7 @@ const testCases = [
     { name: 'Account - Вихід', selector: headerTopIconSelectors.accountIcon, url: '/logout', buttonText: 'Вихід' },
     { name: 'Wishlist link', selector: headerTopIconSelectors.wishlistIcon, url: '/wishlist' },
     { name: 'Basket icon', selector: headerTopIconSelectors.basketIcon, url: '/cart' },
-    { name: 'Checkout link', selector: headerTopIconSelectors.checkoutIcon, url: '/cart' }
+    { name: 'Checkout link', selector: headerTopIconSelectors.checkoutIcon, url: 'checkout/' }
 ];
 
 describe('User Login', () => {
