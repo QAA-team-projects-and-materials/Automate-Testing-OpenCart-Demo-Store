@@ -6,5 +6,7 @@
   "basketIcon": ".list-inline > :nth-child(4)",
   "checkoutIcon": ".list-inline > :nth-child(5)",
   "breadcrumbMenu": ".breadcrumb",
-  "accountDropdown": ".list-inline > .dropdown > .dropdown-menu"
+  "accountDropdown": ".list-inline > .dropdown > .dropdown-menu",
+  "basketButton": "header > .container > .row > .col-sm-3",
+  "searchButton": ".input-group-btn > .btn"
 }

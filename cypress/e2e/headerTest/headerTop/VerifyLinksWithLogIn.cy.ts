@@ -1,5 +1,5 @@
 import logInSelectors from '../../../fixtures/userLogInSelectors.json';
-import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json";
+import headerTopIconSelectors from "../../../fixtures/headerSelectors.json";
 
 // Array with test data for verifying different links and buttons
 const testCases = [

@@ -1,4 +1,4 @@
-import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json"
+import headerTopIconSelectors from "../../../fixtures/headerSelectors.json"
 
 // Array of test cases for top header links
 const testCases = [

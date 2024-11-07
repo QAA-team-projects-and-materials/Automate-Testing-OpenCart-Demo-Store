@@ -1,4 +1,4 @@
-import headerTopIconSelectors from "../../../fixtures/headerTopSelectors.json"
+import headerTopIconSelectors from "../../../fixtures/headerSelectors.json"
 
 // Array containing each icon's description and selector
 const icons = [

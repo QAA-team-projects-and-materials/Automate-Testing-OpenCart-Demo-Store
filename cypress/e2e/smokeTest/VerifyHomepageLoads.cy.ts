@@ -1,4 +1,5 @@
 import homePageSelectors from '../../fixtures/verifyHomepageLoadsSelectors.json'
+
 describe('Verify Homepage Loads Successfully', () => {
 
     // Before the test begins, navigate to the homepage
