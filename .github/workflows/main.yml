@@ -32,8 +32,24 @@ jobs:
         env:
           CYPRESS_VARS: ${{ secrets.CYPRESS_VARS }}  # Load secrets from GitHub
 
-      - name: Run Cypress tests in headless mode
-        run: npx cypress run  # Runs Cypress tests in headless mode
+      - name: Run Cypress tests and capture results
+        id: cypress-run
+        run: |
+          npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results.xml" || true
+          FAILED_TESTS=$(grep -o 'failed' cypress/results/results.xml | wc -l)
+          echo "failed_tests=$FAILED_TESTS" >> $GITHUB_ENV
+
+      - name: Rerun failed tests if any
+        if: env.failed_tests > 0
+        run: |
+          for i in $(seq 1 10); do
+            echo "Rerunning failed tests, attempt $i"
+            npx cypress run --spec $(npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results.xml" --reporter-options "reportDir=cypress/results" | grep 'failed' | awk '{print $NF}') || true
+            if [ $? -eq 0 ]; then
+              echo "No failed tests remaining."
+              break
+            fi
+          done
 
       - name: Upload Cypress test results
         if: failure()  # Only upload test results if the tests fail

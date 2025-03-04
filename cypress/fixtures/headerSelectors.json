@@ -1,0 +1,12 @@
+{
+  "phoneIcon": ":nth-child(1) > a > .fa",
+  "phoneIconTop": ".list-inline > :nth-child(1) > a > .fa",
+  "accountIcon": ".list-inline > .dropdown > .dropdown-toggle",
+  "wishlistIcon": ".list-inline > :nth-child(3)",
+  "basketIcon": ".list-inline > :nth-child(4)",
+  "checkoutIcon": ".list-inline > :nth-child(5)",
+  "breadcrumbMenu": ".breadcrumb",
+  "accountDropdown": ".list-inline > .dropdown > .dropdown-menu",
+  "basketButton": "header > .container > .row > .col-sm-3",
+  "searchButton": ".input-group-btn > .btn"
+}
